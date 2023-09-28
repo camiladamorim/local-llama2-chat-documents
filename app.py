@@ -5,18 +5,13 @@ from langchain.document_loaders import PyPDFLoader  # For loading and reading PD
 from langchain.text_splitter import RecursiveCharacterTextSplitter  # For splitting large texts into smaller chunks.
 from langchain.vectorstores import Chroma  # Vector storage system for embeddings.
 from langchain.llms import CTransformers  # For loading transformer models.
-from langchain.embeddings import HuggingFaceInstructEmbeddings  # Embeddings from HuggingFace models with instructions.
 from langchain.embeddings import HuggingFaceEmbeddings  # General embeddings from HuggingFace models.
-from langchain.embeddings import LlamaCppEmbeddings  # Embeddings using the Llama model.
 from langchain.chains import RetrievalQA  # Q&A retrieval system.
 
 # Import Streamlit for creating a web application and other necessary modules for file handling.
 import streamlit as st  # Main library for creating the web application.
 import tempfile  # For creating temporary directories and files.
 import os  # For handling file and directory paths.
-
-# Import a handler for streaming outputs.
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler  # For live updates in the Streamlit app.
 
 # Set the title of the Streamlit web application.
 st.title("ChatPDF")
