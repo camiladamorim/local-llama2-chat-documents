@@ -17,7 +17,7 @@ import os  # For handling file and directory paths.
 st.title("ChatPDF")
 # Create a visual separator in the app.
 st.write("---")
-
+temperature = st.sidebar.slider('temperature', min_value=0.01, max_value=5.0, value=0.1, step=0.01)
 # Add a file uploader widget for users to upload their PDF files.
 uploaded_file = st.file_uploader("Upload your PDF file!", type=['pdf'])
 # Another visual separator after the file uploader.
@@ -86,7 +86,7 @@ if uploaded_file is not None:
             stream_hander = StreamHandler(chat_box)
 
             # Initialize the Q&A model and chain.
-            llm = CTransformers(model="llama-2-7b-chat.ggmlv3.q2_K.bin", model_type="llama", callbacks=[stream_hander])
+            llm = CTransformers(model="llama-2-7b-chat.ggmlv3.q2_K.bin", model_type="llama", temperature=temperature,callbacks=[stream_hander])
             qa_chain = RetrievalQA.from_chain_type(llm, retriever=db.as_retriever())
             # Get the answer to the user's question.
             qa_chain({"query": question})
